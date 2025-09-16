@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Maweja Cafe & Art Gallery</title>
+	<style>
+		/* Neumorphic Color Palette */
+		:root {
+			--background: #e0e0e0;
+			--light-shadow: #ffffff;
+			--dark-shadow: #a8a8a8;
+			--accent-color: #d66a4f;
+			--text-color: #444;
+		}
+
+		/* General Styling */
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: var(--background);
+			color: var(--text-color);
+			line-height: 1.6;
+			scroll-behavior: smooth;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		h1, h2, h3 {
+			font-weight: 600;
+		}
+
+		a {
+			text-decoration: none;
+			color: var(--accent-color);
+			transition: color 0.3s ease;
+		}
+
+		a:hover {
+			color: #a84f3c;
+		}
+
+		/* Neumorphic Base Style */
+		.neumorphic-base {
+			background: var(--background);
+			box-shadow: 6px 6px 12px var(--dark-shadow), -6px -6px 12px var(--light-shadow);
+			border-radius: 20px;
+			transition: all 0.2s ease-in-out;
+		}
+
+		/* Neumorphic Inset Style (for pressed state) */
+		.neumorphic-inset {
+			box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+		}
+
+		/* Header - Fading Effect Added */
+		header {
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			background-color: var(--background);
+			background-image: linear-gradient(to bottom, var(--background), rgba(224, 224, 224, 0.9) 80%, rgba(224, 224, 224, 0.0) 100%);
+		}
+
+		.logo {
+			font-size: 24px;
+			font-weight: 700;
+			color: var(--text-color);
+		}
+
+		nav ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: flex;
+		}
+
+		nav li {
+			margin-left: 20px;
+		}
+
+		nav a {
+			padding: 10px 20px;
+			display: block;
+			border-radius: 50px;
+			background: var(--background);
+			box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+			color: var(--text-color);
+		}
+
+		nav a:hover {
+			transform: scale(1.05);
+			color: var(--accent-color);
+		}
+
+		nav a:active {
+			box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+			transform: scale(0.98);
+		}
+		
+		/* Hero Section */
+		.hero {
+			height: 60vh;
+			background: url('https://images.pexels.com/photos/931007/pexels-photo-931007.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+			color: #fff;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			position: relative;
+		}
+
+		.hero::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.hero-content {
+			position: relative;
+			z-index: 1;
+			padding: 20px;
+		}
+
+		.hero h1 {
+			font-size: 4em;
+			margin: 0;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+		}
+
+		.hero p {
+			font-size: 1.5em;
+			max-width: 600px;
+			margin: 10px auto;
+		}
+
+		/* Section Styling */
+		.section {
+			padding: 60px 0;
+			text-align: center;
+		}
+
+		/* Gallery/Card Styling - Refined */
+		.gallery-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 30px;
+			margin-top: 40px;
+		}
+		
+		.gallery-item {
+			padding: 20px;
+			text-align: left;
+			cursor: pointer;
+			transition: transform 0.3s ease;
+		}
+		
+		.gallery-item:hover {
+			transform: translateY(-10px);
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 10px;
+			margin-bottom: 15px;
+			box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+		}
+		
+		.social-links {
+			margin-top: 20px;
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+		}
+		
+		.social-links a {
+			display: inline-block;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			font-size: 24px;
+			border-radius: 50%;
+			background: var(--background);
+			box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+			color: var(--text-color);
+			transition: transform 0.2s ease;
+		}
+
+		.social-links a:hover {
+			transform: scale(1.1);
+		}
+
+		.social-links a:active {
+			box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+		}
+
+		/* Footer */
+		footer {
+			background-color: var(--background);
+			color: var(--text-color);
+			text-align: center;
+			padding: 40px 0;
+		}
+
+		/* Watermark Styling */
+		.watermark {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			color: rgba(68, 68, 68, 0.2);
+			font-size: 14px;
+			font-family: sans-serif;
+			z-index: 999;
+			pointer-events: none;
+		}
+
+		/* Responsive Mobile Menu - Now with Neumorphic Style */
+		@media (max-width: 768px) {
+			nav {
+				position: fixed;
+				top: 0;
+				right: 0; 
+				width: 250px; 
+				height: 100%;
+				/* Applied neumorphic base styling here */
+				background-color: var(--background);
+				box-shadow: -6px 6px 12px var(--dark-shadow), 6px -6px 12px var(--light-shadow); 
+				z-index: 1001;
+				padding-top: 100px; 
+				
+				transform: translateX(100%); 
+				transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+				visibility: hidden; 
+			}
+			
+			nav.active {
+				transform: translateX(0); 
+				visibility: visible;
+			}
+
+			nav ul {
+				flex-direction: column;
+				text-align: center;
+				padding: 0;
+			}
+			
+			nav li {
+				margin: 20px 0; 
+			}
+
+			/* Neumorphic links inside the menu */
+			nav a {
+				color: var(--text-color);
+				background: var(--background);
+				padding: 15px; 
+				border-radius: 50px;
+				box-shadow: 4px 4px 8px var(--dark-shadow), -4px -4px 8px var(--light-shadow);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			nav a:hover {
+				transform: scale(1.05);
+				color: var(--accent-color);
+			}
+
+			nav a:active {
+				box-shadow: inset 4px 4px 8px var(--dark-shadow), inset -4px -4px 8px var(--light-shadow);
+				transform: scale(0.98);
+			}
+
+			.menu-toggle {
+				display: block;
+				font-size: 30px; 
+				cursor: pointer;
+				z-index: 1002;
+				color: var(--text-color);
+				transition: transform 0.3s ease;
+			}
+			
+			.menu-toggle.active {
+				transform: rotate(90deg);
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="logo">Maweja</div>
+		<nav id="main-nav">
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#menu">Menu</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</nav>
+		<div class="menu-toggle" onclick="toggleMenu(this)">☰</div> 
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="hero-content">
+				<h1>Maweja</h1>
+				<p>Where Malawian coffee meets art in Lilongwe.</p>
+			</div>
+		</section>
+
+		<section id="about" class="section">
+			<div class="container neumorphic-base">
+				<h2>Our Story</h2>
+				<p>Maweja is more than just a cafe. It's a community hub where locals and visitors can enjoy freshly brewed coffee and discover incredible art from Malawian artists. Our mission is to celebrate local talent and create a welcoming space for creativity and connection. We believe that great coffee and great art go hand-in-hand, and we're dedicated to showcasing the best of both worlds right here in Lilongwe. Our journey began with a simple idea: to build a place where people could slow down, connect, and be inspired by the creativity that surrounds them.</p>
+			</div>
+		</section>
+
+		<section id="menu" class="section">
+			<div class="container neumorphic-base">
+				<h2>Our Menu</h2>
+				<div class="gallery-grid">
+					<div class="gallery-item neumorphic-base">
+						<img src="https://images.pexels.com/photos/1517595/pexels-photo-1517595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A freshly brewed cup of coffee">
+						<h3>Malawi Coffee</h3>
+						<p>Our signature blend, sourced from the highlands of Malawi.</p>
+					</div>
+					<div class="gallery-item neumorphic-base">
+						<img src="https://images.pexels.com/photos/1564756/pexels-photo-1564756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A shot of espresso being poured">
+						<h3>Espresso</h3>
+						<p>A rich, strong shot of our finest coffee.</p>
+					</div>
+					<div class="gallery-item neumorphic-base">
+						<img src="https://images.pexels.com/photos/3923946/pexels-photo-3923946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A creamy latte with detailed latte art">
+						<h3>Latte</h3>
+						<p>A creamy and smooth coffee, perfect for any time of day.</p>
+					</div>
+					<div class="gallery-item neumorphic-base">
+						<img src="https://images.pexels.com/photos/221375/pexels-photo-221375.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="An assortment of delicious pastries">
+						<h3>Pastries</h3>
+						<p>Freshly baked croissants, muffins, and danishes.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="section">
+			<div class="container neumorphic-base">
+				<h2>Contact Us</h2>
+				<p>We'd love to hear from you!</p>
+				<div class="social-links">
+					<a href="#" class="neumorphic-base" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="neumorphic-base" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+					<a href="#" class="neumorphic-base" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<div class="container">
+			<p>&copy; 2025 Maweja. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+	<div class="watermark">by phil</div>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+	<script>
+		function toggleMenu(button) {
+			const nav = document.getElementById('main-nav');
+			if (nav && button) {
+				nav.classList.toggle('active');
+				button.classList.toggle('active'); 
+			}
+		}
+	</script>
+</body>
+</html>
